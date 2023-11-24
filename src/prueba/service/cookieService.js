@@ -1,11 +1,11 @@
 const { prueba } = require("../model/pruebaModel");
 const { generarToken } = require("./jwtService");
 
-const crearCookie = (usuario, apellido) => {
-  if (prueba.usuario === usuario && prueba.apellido === apellido) {
+const crearCookie = (usuario, apellido, password) => {
+  if (prueba.usuario === usuario && prueba.apellido === apellido && prueba.password === password) {
     return {
       name: "cookie_con_token",
-      value: generarToken(usuario, apellido),
+      value: generarToken(prueba.usuario, prueba.apellido, prueba.admin),
       options: {
         maxAge: 60 * 60 * 1000, // Duración de una hora
         httpOnly: true, // Protocolo http

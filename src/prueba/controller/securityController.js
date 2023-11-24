@@ -2,10 +2,10 @@ const { crearCookie } = require("../service/cookieService");
 const { verificarToken } = require("../service/jwtService");
 
 const cookieController = (req, res) => {
-  const { usuario, apellido } = req.body;
+  const { usuario, apellido, password } = req.body;
 
   try {
-    const cookie = crearCookie(usuario, apellido);
+    const cookie = crearCookie(usuario, apellido, password);
     res.cookie(cookie.name, cookie.value, cookie.options);
     res.json({ msg: `bienvenida ${usuario}` });
 
@@ -31,8 +31,17 @@ const prueba = async (req, res) => {
   res.send(`hola, estas validado: ${req.decoded.usuario}`);
 };
 
+const pruebaAdmi = async (req, res) => {
+  if (req.decoded.admin) {
+    res.send(`hola, administrador: ${req.decoded.usuario}, tienes permiso`);
+    return;
+  }
+  res.send(`hola ${req.decoded.usuario}, no tienes permiso`);
+};
+
 module.exports = {
   cookieController,
   verificarController,
   prueba,
+  pruebaAdmi,
 };

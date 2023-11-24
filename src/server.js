@@ -35,5 +35,5 @@ server.use(routes);
 
 server.listen(PORT, HOST, () => {
   // eslint-disable-next-line no-console
-  console.log(`http://${HOST}:${PORT}/prueba`);
+  console.log(`http://${HOST}:${PORT}`);
 });
