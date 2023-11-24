@@ -1,6 +1,6 @@
 const prueba = {
-  usuario: "javier",
-  apellido: "villca",
+  usuario: "Juan",
+  apellido: "Perez",
   password: "123456789",
   admin: true,
 };

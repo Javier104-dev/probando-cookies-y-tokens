@@ -7,7 +7,7 @@ const cookieController = (req, res) => {
   try {
     const cookie = crearCookie(usuario, apellido, password);
     res.cookie(cookie.name, cookie.value, cookie.options);
-    res.json({ msg: `bienvenida ${usuario}` });
+    res.json({ msg: `bienvenido ${usuario}` });
 
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -28,15 +28,15 @@ const verificarController = async (req, res, next) => {
 };
 
 const prueba = async (req, res) => {
-  res.send(`hola, estas validado: ${req.decoded.usuario}`);
+  res.json({ msg: `hola, estas validado: ${req.decoded.usuario}` });
 };
 
 const pruebaAdmi = async (req, res) => {
   if (req.decoded.admin) {
-    res.send(`hola, administrador: ${req.decoded.usuario}, tienes permiso`);
+    res.json({ msg: `hola, administrador: ${req.decoded.usuario}, tienes permiso` });
     return;
   }
-  res.send(`hola ${req.decoded.usuario}, no tienes permiso`);
+  res.send(`hola ${req.decoded.usuario}, solo se permiten administradores`);
 };
 
 module.exports = {
